@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TechnologiesModule } from './technologies/technologies.module';
-import { UsersModule } from './users/users.module';
-import { ProjectsModule } from './projects/projects.module';
-import { ClientsModule } from './clients/clients.module';
-import { DepartmentsModule } from './departments/departments.module';
-import { AuthenModule } from './authen/authen.module';
+import { TechnologiesModule } from './modules/technologies/technologies.module'; 
+import { UsersModule } from './modules/users/users.module'; 
+import { ProjectsModule } from './modules/projects/projects.module'; 
+import { ClientsModule } from './modules/clients/clients.module'; 
+import { DepartmentsModule } from './modules/departments/departments.module'; 
+import { AuthenModule } from './modules/authen/authen.module'; 
 import { MySqlConfig } from './database/database.config';
-import { TasksModule } from './tasks/tasks.module';
+import { TasksModule } from './modules/tasks/tasks.module'; 
 
 @Module({
   imports: [

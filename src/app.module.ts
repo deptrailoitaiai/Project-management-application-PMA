@@ -9,6 +9,7 @@ import { DepartmentsModule } from './modules/departments/departments.module';
 import { AuthenModule } from './modules/authen/authen.module'; 
 import { MySqlConfig } from './database/database.config';
 import { TasksModule } from './modules/tasks/tasks.module'; 
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -19,7 +20,8 @@ import { TasksModule } from './modules/tasks/tasks.module';
     DepartmentsModule,
     AuthenModule,
     MySqlConfig,
-    TasksModule
+    TasksModule,
+    ScheduleModule.forRoot()
   ],
   controllers: [AppController],
   providers: [

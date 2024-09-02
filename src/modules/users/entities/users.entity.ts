@@ -1,7 +1,7 @@
 import { UsersRolesEntity } from "src/modules/authen/enities/usersRoles.entity";  
 import { UsersTechnologiesEntity } from "src/modules/linkTable/entities/usersTechnologies.entity"; 
 import { UsersProjectsEntity } from "src/modules/linkTable/entities/usersProjects.entiety"; 
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { TasksEntity } from "src/modules/tasks/entities/tasks.entity"; 
 import { DepartmentsEntity } from "src/modules/departments/entities/departments.entity";
 
@@ -61,11 +61,11 @@ export class UsersEntity {
     @OneToMany(() => UsersRolesEntity, usersRolesEntity => usersRolesEntity.usersEntity)
     usersRolesEntity: UsersRolesEntity[];
 
-    @ManyToOne(() => DepartmentsEntity, departmentsEntity => departmentsEntity.usersEntity)
+    @OneToOne(() => DepartmentsEntity, departmentsEntity => departmentsEntity.usersEntity)
     @JoinColumn({ name: 'department', referencedColumnName: 'departmentId'})
     departmentsEntity: DepartmentsEntity;
 
-    @ManyToOne(() => DepartmentsEntity, departmentsEntity => departmentsEntity.usersEntityManagerDepartment)
+    @OneToOne(() => DepartmentsEntity, departmentsEntity => departmentsEntity.usersEntityManagerDepartment)
     @JoinColumn({ name: 'manager_department', referencedColumnName: 'departmentId'})
     departmentsEntityManager: DepartmentsEntity;
 

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Patch, Post } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
 import { CreateUserDto, DeleteUserDto, UpdateUserDto } from '../dtos/users.dto';
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
@@ -13,7 +13,7 @@ export class UsersController {
     return this.usersService.createUser(createUserDto.loginEmail, createUserDto.password, createUserDto.name);
   }
 
-  @Post('update')
+  @Patch('update')
   async updateUser(@Body() updateUserDto: UpdateUserDto): Promise<UpdateResult> {
     return await this.usersService.updateUser(
       'userId',
@@ -26,7 +26,7 @@ export class UsersController {
     );
   }
 
-  @Post('delete')
+  @Delete('delete')
   async deleteUser(@Body() deleteUserDto: DeleteUserDto): Promise<DeleteResult> {
     return await this.usersService.deleteUser(deleteUserDto.userEmail)
   }

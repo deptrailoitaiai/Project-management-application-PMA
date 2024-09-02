@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Patch, Post } from '@nestjs/common';
 import { ProjectsService } from '../services/projects.service';
 import { CreateProjectDto, DeleteProjectDto, UpdateProjectDto } from '../dtos/projects.dto';
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
@@ -12,12 +12,12 @@ export class ProjectsController {
         return await this.projectService.createProject(createProjectDto.projectName, createProjectDto.projectType);
     }
 
-    @Post('/update')
+    @Patch('/update')
     async updateProject(@Body() updateProjectDto: UpdateProjectDto): Promise<UpdateResult> {
         return await this.projectService.updateProject(updateProjectDto.projectName, updateProjectDto.projectStatus);
     }
 
-    @Post('delete')
+    @Delete('delete')
     async DeleteProjectDto(@Body() deleteProjectDto: DeleteProjectDto): Promise<DeleteResult> {
         return await this.projectService.deleteProject(deleteProjectDto.projectName);
     }

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Patch, Post } from '@nestjs/common';
 import { DepartmentsService } from '../services/departments.service';
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 import { CreateDepartmentDto, DeleteDepartmentDto, UpdateDepartmentDto } from '../dtos/departments.dto';
@@ -15,7 +15,7 @@ export class DepartmentsController {
         );
     }
 
-    @Post('update')
+    @Patch('update')
     async updateDepartment(@Body() updateDepartmentDto: UpdateDepartmentDto): Promise<UpdateResult> {
         return await this.departmentsService.updateDepartment(
             updateDepartmentDto.departmentName,
@@ -24,7 +24,7 @@ export class DepartmentsController {
         );
     }
 
-    @Post('delete')
+    @Delete('delete')
     async deleteDepartment(@Body() deleteDepartmentDto: DeleteDepartmentDto): Promise<DeleteResult> {
         return await this.departmentsService.deleteDepartment(deleteDepartmentDto.departmentName);
     }

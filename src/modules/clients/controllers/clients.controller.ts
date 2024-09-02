@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Patch, Post } from "@nestjs/common";
 import { ClientsService } from "../services/clients.service";
 import { ResponseTypeFail, ResponseTypeSuccess } from "src/config/responsiveType";
 import { CreateClientDto, DeleteClientDto, UpdateClientDto } from "../dtos/clients.dto";
@@ -19,7 +19,7 @@ export class ClientsController {
         return await this.clientsService.createClient(createClientDto.clientName, createClientDto.description);
     }
 
-    @Post('update')
+    @Patch('update')
     async updateClient(@Body() updateClientDto: UpdateClientDto): Promise<ResponseTypeSuccess | ResponseTypeFail> {
         return await this.clientsService.updateClient(
             updateClientDto.clientName,
@@ -28,7 +28,7 @@ export class ClientsController {
         );
     }
 
-    @Post('delete')
+    @Delete('delete')
     async deleteClient(@Body() deleteClientDto: DeleteClientDto): Promise<ResponseTypeSuccess | ResponseTypeFail> {
         return await this.clientsService.deleteClient(deleteClientDto.clientId);
     }

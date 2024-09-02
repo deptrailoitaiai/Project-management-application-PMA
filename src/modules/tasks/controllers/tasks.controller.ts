@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Patch, Post } from '@nestjs/common';
 import { TasksService } from '../services/tasks.service';
 import { CreateTaskDto, DeleteTaskDto, UpdateTaskDto } from '../dtos/tasks.dto';
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
@@ -16,7 +16,7 @@ export class TasksController {
         );
     }
 
-    @Post('update')
+    @Patch('update')
     async updateTask(@Body() updateTaskDto: UpdateTaskDto): Promise<UpdateResult> {
         return await this.tasksService.updateTask(
             updateTaskDto.userLoginEmail,
@@ -25,7 +25,7 @@ export class TasksController {
         );
     }
 
-    @Post('delete')
+    @Delete('delete')
     async deleteTask(@Body() deleteTaskDto: DeleteTaskDto): Promise<DeleteResult> {
         return await this.tasksService.deleteTask(deleteTaskDto.userLoginEmail, deleteTaskDto.projectName, deleteTaskDto.task)
     }

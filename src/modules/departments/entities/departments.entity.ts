@@ -1,6 +1,6 @@
 import { DepartmentsProjectsEntity } from "src/modules/linkTable/entities/departmentsProjects.entity";
 import { UsersEntity } from "src/modules/users/entities/users.entity";
-import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('departments')
 export class DepartmentsEntity {
@@ -19,9 +19,9 @@ export class DepartmentsEntity {
     @OneToMany(() => DepartmentsProjectsEntity, departmentsProjectsEntity => departmentsProjectsEntity.departmentsEntity)
     departmentsProjectsEntity: DepartmentsProjectsEntity[];
 
-    @OneToMany(() => UsersEntity, usersEntity => usersEntity.departmentsEntity)
-    usersEntity: UsersEntity[];
+    @OneToOne(() => UsersEntity, usersEntity => usersEntity.departmentsEntity)
+    usersEntity: UsersEntity;
 
-    @OneToMany(() => UsersEntity, usersEntity => usersEntity.departmentsEntityManager)
-    usersEntityManagerDepartment: UsersEntity[];
+    @OneToOne(() => UsersEntity, usersEntity => usersEntity.departmentsEntityManager)
+    usersEntityManagerDepartment: UsersEntity;
 }

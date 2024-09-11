@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
-import { UsersProjectsEntity } from '../../linkTable/entities/usersProjects.entiety';
+import { UsersProjectsEntity } from '../../linkTable/entities/usersProjects.entity';
 import { UsersEntity } from 'src/modules/users/entities/users.entity';
 import { ProjectsEntity } from 'src/modules/projects/entities/projects.entity';
 

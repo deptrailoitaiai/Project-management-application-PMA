@@ -1,10 +1,13 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { SchedulerRegistry, Timeout } from '@nestjs/schedule';
 
 @Injectable()
 export class AppService {
-  constructor() {}
-  getHello(): string {
-    return 'Hello World!';
-  }
+    constructor(
+    ) {}
+
+    @Timeout(500)
+    test() {
+        return console.log();
+    }
 }
-  

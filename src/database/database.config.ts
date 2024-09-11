@@ -1,21 +1,9 @@
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
-import { PermissionsEntity } from 'src/modules/authen/enities/permissions.entity';
-import { RolesEntity } from 'src/modules/authen/enities/roles.entity';
-import { RolesPermissionsEntity } from 'src/modules/authen/enities/rolesPermissions.entity';
-import { UsersRolesEntity } from 'src/modules/authen/enities/usersRoles.entity';
-import { ClientsEntity } from 'src/modules/clients/entities/clients.entity';
-import { DepartmentsEntity } from 'src/modules/departments/entities/departments.entity';
-import { DepartmentsProjectsEntity } from 'src/modules/linkTable/entities/departmentsProjects.entity';
-import { ProjectsClientsEntity } from 'src/modules/linkTable/entities/projectsClients.entity';
-import { ProjectsTechnologiesEntity } from 'src/modules/linkTable/entities/projectsTechnologies.entity';
-import { UsersTechnologiesEntity } from 'src/modules/linkTable/entities/usersTechnologies.entity';
-import { ProjectsEntity } from 'src/modules/projects/entities/projects.entity';
-import { TasksEntity } from 'src/modules/tasks/entities/tasks.entity';
-import { UsersProjectsEntity } from 'src/modules/linkTable/entities/usersProjects.entiety';
-import { TechnologiesEntity } from 'src/modules/technologies/entities/technologies.entity';
-import { UsersEntity } from 'src/modules/users/entities/users.entity';
 import * as path from 'path';
+import { DataSourceOptions } from 'typeorm';
+import * as glob from 'glob';
+import { promisify } from 'util';
 dotenv.config();
 
 const MYSQL_HOST = process.env.MYSQL_HOST;
@@ -24,34 +12,19 @@ const MYSQL_USERNAME = process.env.MYSQL_USERNAME;
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD;
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE;
 
-export const MySqlConfig = TypeOrmModule.forRoot({
+export const TypeOrmConfig: TypeOrmModuleOptions & DataSourceOptions = {
     type: 'mysql',
     host: MYSQL_HOST,
     port: MYSQL_PORT,
     username: MYSQL_USERNAME,
     password: MYSQL_PASSWORD,
     database: MYSQL_DATABASE,
-    entities: [
-        entityPath,
-        // TechnologiesEntity,
-        // UsersTechnologiesEntity,
-        // UsersProjectsEntity,
-        // TasksEntity,
-        // ProjectsTechnologiesEntity,
-        // ProjectsClientsEntity,
-        // UsersEntity,
-        // ProjectsEntity,
-        // ClientsEntity,
-        // UsersRolesEntity,
-        // RolesEntity,
-        // PermissionsEntity,
-        // RolesPermissionsEntity,
-        // DepartmentsEntity,
-        // DepartmentsProjectsEntity
-    ],
-
-    synchronize: true,
+    entities: [path.join(__dirname, '..', 'modules/**/*.entity.ts')],
+    migrationsTableName: 'migration_history',
+    migrations: [path.join(__dirname, '..', 'database/migrations/*.ts')],
+    // synchronize: true,
     logging: true,
-});
+    autoLoadEntities: true,
+}
 
-export var entityPath = path.resolve(__dirname, '../', 'modules/**/*.entity{.ts,.js}');
+// npx ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate src/database/migrations/secondMigration -d src/database/datasource.ts

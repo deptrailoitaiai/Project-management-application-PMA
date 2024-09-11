@@ -19,9 +19,9 @@ export class DepartmentsEntity {
     @OneToMany(() => DepartmentsProjectsEntity, departmentsProjectsEntity => departmentsProjectsEntity.departmentsEntity)
     departmentsProjectsEntity: DepartmentsProjectsEntity[];
 
-    @OneToOne(() => UsersEntity, usersEntity => usersEntity.departmentsEntity)
-    usersEntity: UsersEntity;
+    @OneToMany(() => UsersEntity, usersEntity => usersEntity.departmentsEntity)
+    usersEntity: UsersEntity[];
 
-    @OneToOne(() => UsersEntity, usersEntity => usersEntity.departmentsEntityManager)
-    usersEntityManagerDepartment: UsersEntity;
+    @OneToMany(() => UsersEntity, usersEntity => usersEntity.departmentsEntityManager)
+    usersEntityManagerDepartment: UsersEntity[];
 }

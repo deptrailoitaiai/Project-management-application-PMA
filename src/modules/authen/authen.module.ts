@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PermissionsEntity } from './enities/permissions.entity';
-import { RolesEntity } from './enities/roles.entity';
-import { RolesPermissionsEntity } from './enities/rolesPermissions.entity';
-import { UsersRolesEntity } from './enities/usersRoles.entity';
+import { PermissionsEntity } from './entities/permissions.entity';
+import { RolesEntity } from './entities/roles.entity';
+import { RolesPermissionsEntity } from './entities/rolesPermissions.entity';
+import { UsersRolesEntity } from './entities/usersRoles.entity';
 
 @Module({
     imports: [

@@ -4,7 +4,6 @@ import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { UsersEntity } from '../entities/users.entity';
 import { SchedulerRegistry, Timeout } from '@nestjs/schedule';
-import { entityPath } from 'src/database/database.config';
 
 @Injectable()
 export class UsersService {

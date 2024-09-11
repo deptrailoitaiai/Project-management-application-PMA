@@ -1,6 +1,7 @@
-import { IsArray, IsOptional, IsString } from "class-validator";
+import { PartialType, PickType, OmitType } from '@nestjs/swagger';
+import { IsArray, IsOptional, IsString } from 'class-validator';
 
-export class CreateUserDto {
+export class UserDto {
     @IsString()
     loginEmail: string;
 
@@ -9,37 +10,38 @@ export class CreateUserDto {
 
     @IsString()
     name: string;
-}
-
-export class UpdateUserDto {
-    @IsString()
-    @IsOptional()
-    birth?: string;
 
     @IsString()
-    @IsOptional()
-    address?: string;
+    birth: string;
 
     @IsString()
-    @IsOptional()
-    citizenId?: string;
+    address: string;
 
     @IsString()
-    @IsOptional()
-    phoneNumber?: string;
+    citizenId: string;
+
+    @IsString()
+    phoneNumber: string;
 
     @IsArray()
     @IsString({ each: true })
-    @IsOptional()
-    foreignLanguage?: string[];
+    foreignLanguage: string[];
 
     @IsArray()
     @IsString({ each: true })
-    @IsOptional()
-    degree?: string[];
+    degree: string[];
 }
 
-export class DeleteUserDto {
+export class CreateUserDto extends PickType(UserDto, ['loginEmail', 'name', 'password']) {}
+
+export class UpdateUserDto extends PartialType(
+    PickType(UserDto, ['birth', 'address', 'citizenId', 'phoneNumber', 'foreignLanguage', 'degree']),
+) {}
+
+export class DeleteUserDto extends PickType(UserDto, ['loginEmail']) {}
+
+export class MappedTypeDto extends PickType(UserDto, ['name', 'password']) {
     @IsString()
-    userEmail: string;
+    @IsOptional()
+    optional: string
 }

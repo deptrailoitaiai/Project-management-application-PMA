@@ -1,7 +1,7 @@
 import { DepartmentsProjectsEntity } from 'src/modules/linkTable/entities/departmentsProjects.entity';
 import { ProjectsClientsEntity } from 'src/modules/linkTable/entities/projectsClients.entity';
 import { ProjectsTechnologiesEntity } from 'src/modules/linkTable/entities/projectsTechnologies.entity';
-import { UsersProjectsEntity } from 'src/modules/linkTable/entities/usersProjects.entiety';
+import { UsersProjectsEntity } from 'src/modules/linkTable/entities/usersProjects.entity';
 import { TasksEntity } from 'src/modules/tasks/entities/tasks.entity';
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 

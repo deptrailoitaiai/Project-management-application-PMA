@@ -1,7 +1,8 @@
-import { IsEnum, IsString } from "class-validator";
-import { TaskStatusEnum } from "../entities/tasks.entity";
+import { IsEnum, IsString } from 'class-validator';
+import { TaskStatusEnum } from '../entities/tasks.entity';
+import { OmitType, PickType } from '@nestjs/swagger';
 
-export class CreateTaskDto {
+export class TaskDto {
     @IsString()
     userLoginEmail: string;
 
@@ -10,26 +11,13 @@ export class CreateTaskDto {
 
     @IsString()
     task: string;
-}
-
-export class UpdateTaskDto {
-    @IsString()
-    userLoginEmail: string;
-
-    @IsString()
-    projectName: string;
 
     @IsEnum(TaskStatusEnum)
-    taskStatus: TaskStatusEnum
+    taskStatus: TaskStatusEnum;
 }
 
-export class DeleteTaskDto {
-    @IsString()
-    userLoginEmail: string;
+export class CreateTaskDto extends OmitType(TaskDto, ['taskStatus']) {}
 
-    @IsString()
-    projectName: string;
+export class UpdateTaskDto extends PickType(TaskDto, ['userLoginEmail', 'projectName', 'taskStatus']) {}
 
-    @IsString()
-    task: string;
-}
+export class DeleteTaskDto extends OmitType(TaskDto, ['taskStatus']){}

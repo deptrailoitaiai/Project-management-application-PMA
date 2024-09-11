@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TasksEntity } from './entities/tasks.entity';
-import { UsersProjectsEntity } from '../linkTable/entities/usersProjects.entiety';
+import { UsersProjectsEntity } from '../linkTable/entities/usersProjects.entity';
 import { ProjectsModule } from '../projects/projects.module';
 import { UsersModule } from '../users/users.module';
 import { TasksController } from './controllers/tasks.controller';

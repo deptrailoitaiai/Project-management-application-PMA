@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Patch, Post } from '@nestjs/common';
 import { UsersService } from '../services/users.service';
-import { CreateUserDto, DeleteUserDto, UpdateUserDto } from '../dtos/users.dto';
+import { CreateUserDto, DeleteUserDto, MappedTypeDto, UpdateUserDto } from '../dtos/users.dto';
 import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
-import { ResponseTypeFail, ResponseTypeSuccess } from 'src/config/responsiveType';
 
 @Controller('users')
 export class UsersController {
@@ -28,6 +27,11 @@ export class UsersController {
 
   @Delete('delete')
   async deleteUser(@Body() deleteUserDto: DeleteUserDto): Promise<DeleteResult> {
-    return await this.usersService.deleteUser(deleteUserDto.userEmail)
+    return await this.usersService.deleteUser(deleteUserDto.loginEmail)
+  }
+
+  @Delete('/test')
+  async test(@Body() dto: MappedTypeDto) {
+    return dto
   }
 }

@@ -2,7 +2,7 @@ import { UsersRolesEntity } from 'src/modules/authen/entities/usersRoles.entity'
 import { UsersTechnologiesEntity } from 'src/modules/linkTable/entities/usersTechnologies.entity';
 import { UsersProjectsEntity } from 'src/modules/linkTable/entities/usersProjects.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { TasksEntity } from 'src/modules/tasks/entities/tasks.entity';
+import { TasksEntity } from '../../tasks/entities/tasks.entity';
 import { DepartmentsEntity } from 'src/modules/departments/entities/departments.entity';
 
 @Entity('users')

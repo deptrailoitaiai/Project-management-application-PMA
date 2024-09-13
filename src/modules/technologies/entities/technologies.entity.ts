@@ -1,4 +1,4 @@
-import { ProjectsTechnologiesEntity } from "src/modules/linkTable/entities/projectsTechnologies.entity";
+import { ProjectsTechnologiesEntity } from "../../linkTable/entities/projectsTechnologies.entity";
 import { UsersTechnologiesEntity } from "src/modules/linkTable/entities/usersTechnologies.entity";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 

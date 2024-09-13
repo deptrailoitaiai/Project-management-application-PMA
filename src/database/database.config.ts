@@ -1,9 +1,7 @@
-import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
 import { DataSourceOptions } from 'typeorm';
-import * as glob from 'glob';
-import { promisify } from 'util';
 dotenv.config();
 
 const MYSQL_HOST = process.env.MYSQL_HOST;
@@ -19,12 +17,12 @@ export const TypeOrmConfig: TypeOrmModuleOptions & DataSourceOptions = {
     username: MYSQL_USERNAME,
     password: MYSQL_PASSWORD,
     database: MYSQL_DATABASE,
-    entities: [path.join(__dirname, '..', 'modules/**/*.entity.ts')],
+    entities: [path.join(__dirname, '..', 'modules/**/*.entity.{ts,js}')],
     migrationsTableName: 'migration_history',
-    migrations: [path.join(__dirname, '..', 'database/migrations/*.ts')],
-    // synchronize: true,
+    migrations: [path.join(__dirname, '..', 'database/migrations/*.{ts,js}')],
+    synchronize: true,
     logging: true,
-    autoLoadEntities: true,
+    // autoLoadEntities: true,
 }
 
-// npx ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate src/database/migrations/secondMigration -d src/database/datasource.ts
+console.log(path.join(__dirname, '..', 'modules/**/*.entity.{ts,js}'))

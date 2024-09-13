@@ -1,4 +1,4 @@
-import { ProjectsEntity } from 'src/modules/projects/entities/projects.entity';
+import { ProjectsEntity } from '../../projects/entities/projects.entity';
 import { TechnologiesEntity } from 'src/modules/technologies/entities/technologies.entity';
 import { Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 
